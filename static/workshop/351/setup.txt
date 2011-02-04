@@ -1,0 +1,548 @@
+
+
+  ////////////////////////////////////////
+  //
+  // INDEX
+
+  // plugin.tx_browser_pi1
+  //    views
+  //      351: Workshops
+
+
+
+  ////////////////////////////////////////
+  //
+  // plugin.tx_browser_pi1
+
+plugin.tx_browser_pi1 {
+  
+  template {
+    extensions {
+      org {
+        workshops {
+          name      = Org: Workshops
+          file      = EXT:org_workshops/res/html/workshop/351/default.tmpl
+          csvViews  = 351
+        }
+      }
+    }
+  }
+
+  views {
+    list {
+      351 = Workshops
+      351 {
+        name    = Workshops
+        showUid = workshopUid
+        displayList < plugin.tx_browser_pi1.displayList
+        displayList {
+          selectBox_orderBy.display = 0
+        }
+        marker < plugin.tx_browser_pi1.marker
+        marker {
+          my_cat = TEXT
+          my_cat {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_cat.title
+          }
+          my_degree = TEXT
+          my_degree {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_degree.title
+          }
+          my_sector = TEXT
+          my_sector {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_sector.title
+          }
+          my_static_country_zones = TEXT
+          my_static_country_zones {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.static_country_zones
+          }
+          my_type = TEXT
+          my_type {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_type.title
+          }
+          my_summary = TEXT
+          my_summary {
+            value = 
+          }
+          my_caption = TEXT
+          my_caption {
+            value = 
+          }
+          my_singleview_title = TEXT
+          my_singleview_title {
+            value   = Event
+            lang.de = Veranstaltung
+            wrap    = <div class="header01">|</div>
+            typolink {
+              parameter = {$plugin.org.pages.calendar}
+              title {
+                value = All Events
+                lang.de = Alle Veranstaltungen der HfS
+              }
+            }
+          }
+        }
+        select (
+          tx_org_workshop.title,
+          tx_org_workshop.text,
+          tx_org_workshop.rating,
+          tx_org_workshop.static_country_zones,
+          tx_org_headquarters.title,
+          tx_org_workshop_cat.title,
+          tx_org_workshop_degree.title,
+          tx_org_workshop_sector.title,
+          tx_org_workshop_type.title
+        )
+        csvLinkToSingleView = tx_org_workshop.title
+        tx_org_workshop {
+          title = TEXT
+          title {
+            stdWrap {
+              crop = 60 | ... | 1
+            }
+            wrap = <h2>|</h2>
+          }
+          text = TEXT
+          text {
+            stdWrap {
+              crop = 60 | ... | 1
+            }
+          }
+        }
+        filter {
+          tx_org_headquarters {
+            title < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            title {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.tx_org_headquarters
+                }
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+          }
+          tx_org_workshop {
+            rating < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            rating {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.tx_org_workshop.rating
+                }
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+            static_country_zones < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            static_country_zones {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.static_country_zones
+                }
+                option_value = -1
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+          }
+          tx_org_workshop_cat {
+            title < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            title {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.tx_org_workshop_cat
+                }
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+          }
+          tx_org_workshop_degree {
+            title < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            title {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.tx_org_workshop_degree
+                }
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+          }
+          tx_org_workshop_sector {
+            title < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            title {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.tx_org_workshop_sector
+                }
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+          }
+        }
+      }
+    }
+    single {
+      351 = Workshops
+      351 {
+        displaySingle < plugin.tx_browser_pi1.displaySingle
+        displaySingle {
+          image {
+            file >
+          }
+        }
+        marker < plugin.tx_browser_pi1.marker
+        marker {
+          my_cat = TEXT
+          my_cat {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_cat.title
+          }
+          my_degree = TEXT
+          my_degree {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_degree.title
+          }
+          my_sector = TEXT
+          my_sector {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_sector.title
+          }
+          my_static_country_zones = TEXT
+          my_static_country_zones {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.static_country_zones
+          }
+          my_type = TEXT
+          my_type {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_type.title
+          }
+          my_listview_page = TEXT
+          my_listview_page {
+            value = All Workshops &raquo;
+            lang.de = Alle Workshops &raquo; 
+            typolink {
+              parameter = {$plugin.org.pages.workshops}
+              title {
+                value = All workshops
+                lang.de = Alle Workshops
+              }
+            }
+          }
+          my_summary = TEXT
+          my_summary {
+            value = 
+          }
+          my_caption = TEXT
+          my_caption {
+            value = 
+          }
+        }
+        select (
+          tx_org_workshop.title,
+          tx_org_workshop.text,
+          tx_org_workshop.rating,
+          tx_org_workshop.static_country_zones,
+          tx_org_workshop.length,
+          tx_org_workshop.value,
+          tx_org_workshop.tx_org_tax,
+          tx_org_workshop.url,
+          tx_org_workshop.logo,
+          tx_org_workshop.logoseo,
+          tx_org_workshop.image,
+          tx_org_workshop.imagecaption,
+          tx_org_workshop.imageseo,
+          tx_org_workshop.documents,
+          tx_org_headquarters.title,
+          tx_org_workshop_cat.title,
+          tx_org_workshop_degree.title,
+          tx_org_workshop_sector.title,
+          tx_org_workshop_type.title
+        )
+        //orderBy = tx_org_cal_mm_calentrance.sorting, tx_org_calentrance.title
+        tx_org_workshop {
+          title = TEXT
+          title {
+            stdWrap {
+              crop = 60 | ... | 1
+            }
+            wrap = <h2>|</h2>
+          }
+          text = TEXT
+          text {
+            stdWrap.parseFunc < lib.parseFunc_RTE
+          }
+          image < tt_content.image.20
+          image {
+            imgList.field >
+            imgList = ###TX_ORG_WORKSHOP.IMAGE###
+            imgPath = uploads/tx_org/
+            1 {
+              file {
+                width.field >
+                width   = 160c;
+                height  = 110c;
+              }
+              altText.field   >
+              altText         = ###TX_ORG_WORKSHOP.IMAGESEO###
+              titleText.field >
+              titleText       = ###TX_ORG_WORKSHOP.IMAGESEO###
+              imageLinkWrap {
+                enable.field >
+                enable = 1
+                width   = 1000;
+                height  = 800m;
+                //JSwindow = 0
+              }
+            }
+            layout {
+              key.field >
+                // above-left
+              key = 2
+            }
+            cols.field >
+            cols = 5
+            caption.1 {
+              field >
+              value = ###TX_ORG_WORKSHOP.IMAGECAPTION###
+            }
+            stdWrap {
+              prefixComment >
+              wrap          = <div class="image">|</div>
+            }
+          }
+          logo < tt_content.image.20
+          logo {
+            imgList.field >
+            imgList = ###TX_ORG_WORKSHOP.LOGO###
+            imgPath = uploads/tx_org/
+            1 {
+              file {
+                width.field >
+                //width   = 160c;
+                //height  = 110c;
+                height  = 110;
+              }
+              altText.field   >
+              altText         = ###TX_ORG_WORKSHOP.LOGOSEO###
+              titleText.field >
+              titleText       = ###TX_ORG_WORKSHOP.LOGOSEO###
+              imageLinkWrap {
+                enable.field >
+                enable = 1
+                width   = 1000;
+                height  = 800m;
+                //JSwindow = 0
+              }
+            }
+            layout {
+              key.field >
+                // above-left
+              key = 2
+            }
+            cols.field >
+            cols = 1
+            caption >
+            stdWrap {
+              prefixComment >
+              wrap          = <div class="logo">|</div>
+            }
+          }
+          rating = COA
+          rating {
+              // 1 at least
+            10 = COA
+            10 {
+              comment (
+                if   tx_org_workshop.rating   >         0.9
+                if          {$value}          >   {$isLessThan}
+              )
+              10 = IMAGE
+              10 {
+                if {
+                  value         = ###TX_ORG_WORKSHOP.RATING###
+                  isLessThan    = 0.9
+                }
+                file = EXT:org_keq/res/icons/ratingstarFull.png
+                file {
+                  height  = 20
+                  width   = 20
+                }
+                imageLinkWrap = 1
+                imageLinkWrap {
+                  enable = 1
+                  typolink {
+                    parameter = {$plugin.org.pages.shopping_cart}
+                    parameter = http://die-netzmacher.de
+                  }
+                }
+              }
+                // Less than 1
+              20 < .10
+              20 {
+                comment >
+                comment (
+                  if   tx_org_workshop.rating   <          1
+                  if          {$value}          <   {$isGreaterThan}
+                )
+                if {
+                  isGreaterThan = 0.5
+                }
+                file = EXT:org_keq/res/icons/ratingstarEmpty.png
+              }
+//              30 = TEXT
+//              30.value = 1
+            }
+              // 1.5 at least but not 2
+            15 < .10
+            15 {
+              10.if.isLessThan    = 1.4
+              10.if.isGreaterThan = 2
+              10.file = EXT:org_keq/res/icons/ratingstarHalf.png
+              20 >
+//              30.value = 1.5
+            }
+              // 2 at least
+            20 < .10
+            20 {
+              10.if.isLessThan    = 1.9
+              20.if.isGreaterThan = 1.5
+              20.if.isLessThan    >
+//              30.value = 2
+            }
+              // 2.5 at least but not 3
+            25 < .15
+            25 {
+              10.if.isLessThan    = 2.4
+              10.if.isGreaterThan = 3
+//              30.value = 2.5
+            }
+              // 3 at least
+            30 < .10
+            30 {
+              10.if.isLessThan    = 2.9
+              20.if.isGreaterThan = 2.5
+              20.if.isLessThan    >
+//              30.value = 3
+            }
+              // 3.5 at least but not 4
+            35 < .15
+            35 {
+              10.if.isLessThan    = 3.4
+              10.if.isGreaterThan = 4
+//              30.value = 3.5
+            }
+              // 4 at least
+            40 < .10
+            40 {
+              10.if.isLessThan    = 3.9
+              20.if.isGreaterThan = 3.5
+              20.if.isLessThan    >
+//              30.value = 4
+            }
+              // 4.5 at least but not 5
+            45 < .15
+            45 {
+              10.if.isLessThan    = 4.4
+              10.if.isGreaterThan = 5
+//              30.value = 4.5
+            }
+              // 5 at least
+            50 < .10
+            50 {
+              10.if.isLessThan    = 4.9
+              20.if.isGreaterThan = 4.5
+              20.if.isLessThan    >
+//              30.value = 5
+            }
+            60 = TEXT
+            60.value = ###TX_ORG_WORKSHOP.RATING###
+            60.noTrimWrap = | (|)|
+          }
+          rating >
+        }
+        tx_org_location {
+          title2 = COA
+          title2 {
+            20 = TEXT
+            20 {
+              value = ###TX_ORG_LOCATION.TITLE###
+              typolink {
+                parameter = {$plugin.org.pages.location}
+                parameter {
+                  insertData = 1
+                }
+                additionalParams = &tx_browser_pi1[locationUid]=###TX_ORG_LOCATION.UID###&###CHASH###
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  _LOCAL_LANG {
+    default {
+      list_mode_351_titleTag    = Organiser: seminars and workshops
+      list_mode_351_keywords    = TYPO3, organiser, seminars, workshops
+      list_mode_351_summary     = TYPO3 Organiser: seminars and workshops
+      single_mode_351_titleTag  = Organiser Workshop: ###TX_ORG_CAL.TITLE###
+      single_mode_351_keywords  = ###TX_ORG_CAL.KEYWORDS###
+      single_mode_351_summary   = ###TX_ORG_CAL.DESCRIPTION###
+    }
+    de {
+      list_mode_351_titleTag    = Organiser: Seminare und Workshops
+      list_mode_351_keywords    = TYPO3, Organiser, Seminare, Workshops
+      list_mode_351_summary     = TYPO3 Organiser: Seminare und Workshops
+      single_mode_351_titleTag  = Organiser Workshop: ###TX_ORG_CAL.TITLE###
+      single_mode_351_keywords  = ###TX_ORG_CAL.KEYWORDS###
+      single_mode_351_summary   = ###TX_ORG_CAL.DESCRIPTION###
+    }
+  }
+}
+  // plugin.tx_browser_pi1
+
+
+
+  ////////////////////////////////////////
+  //
+  // Header Comment
+
+page.config.headerComment (
+        TYPO3-Programmierung: die-netzmacher.de
+)
+  // Header Comment
