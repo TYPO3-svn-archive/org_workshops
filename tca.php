@@ -458,11 +458,11 @@ $TCA['tx_org_workshop'] = array (
         'size'      => 1, 
         'minitems'  => 0,
         'maxitems'  => 1,
-//        'items' => array(
-//          '0' => array(
-//            '0' => '',
-//          ),
-//        ),
+        'items' => array(
+          '0' => array(
+            '0' => '',
+          ),
+        ),
         'foreign_table'       => 'static_countries',
         //'foreign_table_where' => 'AND tx_org_workshop_cat.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_cat.sorting',
       ),
@@ -475,6 +475,10 @@ $TCA['tx_org_workshop'] = array (
         'size'          => 1, 
         'minitems'      => 0,
         'maxitems'      => 1,
+        'foreign_table' => 'static_country_zones',
+          // WORKFLOW: We don't want any iem by default
+        'foreign_table_where' => 'AND 0',
+          // WORKFLOW: We get all needed items by itemsProcFunc
         'itemsProcFunc' => 'tx_browser_tca->static_country_zones',
         'itemsProcFunc_conf' => array(
             // If your TCA field is not called 'static_countries', you have to configure 'countries_are_in' 

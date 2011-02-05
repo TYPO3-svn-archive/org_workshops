@@ -14,6 +14,8 @@
   //
   // plugin.tx_browser_pi1
 
+
+
 plugin.tx_browser_pi1 {
   
   template {
@@ -86,14 +88,30 @@ plugin.tx_browser_pi1 {
           tx_org_workshop.title,
           tx_org_workshop.text,
           tx_org_workshop.rating,
-          tx_org_workshop.static_country_zones,
           tx_org_headquarters.title,
           tx_org_workshop_cat.title,
           tx_org_workshop_degree.title,
           tx_org_workshop_sector.title,
-          tx_org_workshop_type.title
+          tx_org_workshop_type.title,
+          static_country_zones.zn_name_local
         )
         csvLinkToSingleView = tx_org_workshop.title
+        static_country_zones {
+          zn_name_local = COA
+          zn_name_local {
+            10 = TEXT
+            10 {
+              if.isTrue = ###STATIC_COUNTRY_ZONES.ZN_NAME_LOCAL###
+              value     = ###STATIC_COUNTRY_ZONES.ZN_NAME_LOCAL###
+            }
+            20 = TEXT
+            20 {
+              if.isFalse  = ###STATIC_COUNTRY_ZONES.ZN_NAME_LOCAL###
+              value       = No value
+              lang.de     = Keine Angabe
+            }
+          }
+        }
         tx_org_workshop {
           title = TEXT
           title {
@@ -108,8 +126,41 @@ plugin.tx_browser_pi1 {
               crop = 60 | ... | 1
             }
           }
+          xxxstatic_country_zones = COA
+          xxxstatic_country_zones {
+            10 = USER
+            10 {
+              includeLibs = EXT:browser/lib/class.tx_browser_typoscript.php
+              userFunc = tx_browser_typoscript->static_country_zones
+              userFunc {
+                zones = TEXT
+                zones {
+                  value = ###TX_ORG_WORKSHOP.STATIC_COUNTRY_ZONES###
+                }
+              }
+            }
+          }
         }
         filter {
+          static_country_zones {
+            zn_name_local < plugin.tx_browser_pi1.displayList.master_templates.selectbox
+            zn_name_local {
+              first_item {
+                stdWrap {
+                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.static_country_zones
+                }
+                option_value = -1
+              }
+              wrap {
+                item {
+                  stdWrap {
+                    crop = 30 | ... | 1
+                  }
+                }
+              }
+              wrap = <span class="selectbox">|</span>
+            }
+          }
           tx_org_headquarters {
             title < plugin.tx_browser_pi1.displayList.master_templates.selectbox
             title {
@@ -135,23 +186,6 @@ plugin.tx_browser_pi1 {
                 stdWrap {
                   data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.tx_org_workshop.rating
                 }
-              }
-              wrap {
-                item {
-                  stdWrap {
-                    crop = 30 | ... | 1
-                  }
-                }
-              }
-              wrap = <span class="selectbox">|</span>
-            }
-            static_country_zones < plugin.tx_browser_pi1.displayList.master_templates.selectbox
-            static_country_zones {
-              first_item {
-                stdWrap {
-                  data = LLL:EXT:org_workshops/locallang_db.xml:filter_phrase.static_country_zones
-                }
-                option_value = -1
               }
               wrap {
                 item {
@@ -276,7 +310,6 @@ plugin.tx_browser_pi1 {
           tx_org_workshop.title,
           tx_org_workshop.text,
           tx_org_workshop.rating,
-          tx_org_workshop.static_country_zones,
           tx_org_workshop.length,
           tx_org_workshop.value,
           tx_org_workshop.tx_org_tax,
@@ -291,9 +324,26 @@ plugin.tx_browser_pi1 {
           tx_org_workshop_cat.title,
           tx_org_workshop_degree.title,
           tx_org_workshop_sector.title,
-          tx_org_workshop_type.title
+          tx_org_workshop_type.title,
+          static_country_zones.zn_name_local
         )
         //orderBy = tx_org_cal_mm_calentrance.sorting, tx_org_calentrance.title
+        static_country_zones {
+          zn_name_local = COA
+          zn_name_local {
+            10 = TEXT
+            10 {
+              if.isTrue = ###STATIC_COUNTRY_ZONES.ZN_NAME_LOCAL###
+              value     = ###STATIC_COUNTRY_ZONES.ZN_NAME_LOCAL###
+            }
+            20 = TEXT
+            20 {
+              if.isFalse  = ###STATIC_COUNTRY_ZONES.ZN_NAME_LOCAL###
+              value       = No value
+              lang.de     = Keine Angabe
+            }
+          }
+        }
         tx_org_workshop {
           title = TEXT
           title {
