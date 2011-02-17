@@ -22,8 +22,12 @@ if (!defined ('TYPO3_MODE'))
   //    tx_org_headquarters
   // TCA tables
   //    org_workshop
+  //    org_workshop_audience
   //    org_workshop_cat
+  //    org_workshop_course
   //    org_workshop_degree
+  //    org_workshop_focus
+  //    org_workshop_riskcycle
   //    org_workshop_sector
   //    org_workshop_type
 
@@ -389,8 +393,12 @@ $TCA['tx_org_headquarters']['types']['0']['showitem']   = $str_showitem;
   // TCA tables
 
   // org_workshop
+  // org_workshop_audience
   // org_workshop_cat
+  // org_workshop_course
   // org_workshop_degree
+  // org_workshop_focus
+  // org_workshop_riskcycle
   // org_workshop_sector
   // org_workshop_type
 
@@ -420,17 +428,39 @@ $TCA['tx_org_workshop'] = array (
 );
   // org_workshop /////////////////////////////////////////////////////////////////////
 
+  // org_workshop_audience ///////////////////////////////////////////////////////////////////
+$TCA['tx_org_workshop_audience'] = array (
+  'ctrl' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_audience',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
+      'disabled'  => 'hidden',
+    ),
+    'dividers2tabs'     => true,
+    'hideAtCopy'        => false,
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
+    'thumbnail'         => 'image',
+    'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/audience.gif',
+  ),
+);
+  // org_workshop_audience ///////////////////////////////////////////////////////////////////
+
   // org_workshop_cat ///////////////////////////////////////////////////////////////////
 $TCA['tx_org_workshop_cat'] = array (
   'ctrl' => array (
-    'title'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_cat',
-    'label'     => 'title',
-    'tstamp'    => 'tstamp',
-    'crdate'    => 'crdate',
-    'cruser_id' => 'cruser_id',
-    'sortby'    => 'sorting',
-    'delete'    => 'deleted',
-    'enablecolumns' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_cat',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
       'disabled'  => 'hidden',
     ),
     'dividers2tabs'     => true,
@@ -442,17 +472,39 @@ $TCA['tx_org_workshop_cat'] = array (
 );
   // org_workshop_cat ///////////////////////////////////////////////////////////////////
 
+  // org_workshop_course ///////////////////////////////////////////////////////////////////
+$TCA['tx_org_workshop_course'] = array (
+  'ctrl' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_course',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
+      'disabled'  => 'hidden',
+    ),
+    'dividers2tabs'     => true,
+    'hideAtCopy'        => false,
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
+    'thumbnail'         => 'image',
+    'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/course.gif',
+  ),
+);
+  // org_workshop_course ///////////////////////////////////////////////////////////////////
+
   // org_workshop_degree ///////////////////////////////////////////////////////////////////
 $TCA['tx_org_workshop_degree'] = array (
   'ctrl' => array (
-    'title'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_degree',
-    'label'     => 'title',
-    'tstamp'    => 'tstamp',
-    'crdate'    => 'crdate',
-    'cruser_id' => 'cruser_id',
-    'sortby'    => 'sorting',
-    'delete'    => 'deleted',
-    'enablecolumns' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_degree',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
       'disabled'  => 'hidden',
     ),
     'dividers2tabs'     => true,
@@ -464,17 +516,61 @@ $TCA['tx_org_workshop_degree'] = array (
 );
   // org_workshop_degree ///////////////////////////////////////////////////////////////////
 
+  // org_workshop_focus ///////////////////////////////////////////////////////////////////
+$TCA['tx_org_workshop_focus'] = array (
+  'ctrl' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_focus',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
+      'disabled'  => 'hidden',
+    ),
+    'dividers2tabs'     => true,
+    'hideAtCopy'        => false,
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
+    'thumbnail'         => 'image',
+    'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/focus.gif',
+  ),
+);
+  // org_workshop_focus ///////////////////////////////////////////////////////////////////
+
+  // org_workshop_riskcycle ///////////////////////////////////////////////////////////////////
+$TCA['tx_org_workshop_riskcycle'] = array (
+  'ctrl' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_riskcycle',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
+      'disabled'  => 'hidden',
+    ),
+    'dividers2tabs'     => true,
+    'hideAtCopy'        => false,
+    'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
+    'thumbnail'         => 'image',
+    'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/riskcycle.gif',
+  ),
+);
+  // org_workshop_riskcycle ///////////////////////////////////////////////////////////////////
+
   // org_workshop_sector ///////////////////////////////////////////////////////////////////
 $TCA['tx_org_workshop_sector'] = array (
   'ctrl' => array (
-    'title'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_sector',
-    'label'     => 'title',
-    'tstamp'    => 'tstamp',
-    'crdate'    => 'crdate',
-    'cruser_id' => 'cruser_id',
-    'sortby'    => 'sorting',
-    'delete'    => 'deleted',
-    'enablecolumns' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_sector',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
       'disabled'  => 'hidden',
     ),
     'dividers2tabs'     => true,
@@ -489,14 +585,14 @@ $TCA['tx_org_workshop_sector'] = array (
   // org_workshop_type ///////////////////////////////////////////////////////////////////
 $TCA['tx_org_workshop_type'] = array (
   'ctrl' => array (
-    'title'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_type',
-    'label'     => 'title',
-    'tstamp'    => 'tstamp',
-    'crdate'    => 'crdate',
-    'cruser_id' => 'cruser_id',
-    'sortby'    => 'sorting',
-    'delete'    => 'deleted',
-    'enablecolumns' => array (
+    'title'             => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_type',
+    'label'             => 'title',
+    'tstamp'            => 'tstamp',
+    'crdate'            => 'crdate',
+    'cruser_id'         => 'cruser_id',
+    'default_sortby'    => 'ORDER BY title',
+    'delete'            => 'deleted',
+    'enablecolumns'     => array (
       'disabled'  => 'hidden',
     ),
     'dividers2tabs'     => true,

@@ -19,8 +19,12 @@ if (!defined ('TYPO3_MODE'))
   // Other wizards and config drafts
   // TCA
   //   tx_org_workshop
-  //   tx_org_workshop_cat
+  //   tx_org_workshop_cat (master for category tables)
+  //   tx_org_workshop_audience
+  //   tx_org_workshop_course
   //   tx_org_workshop_degree
+  //   tx_org_workshop_focus
+  //   tx_org_workshop_riskcycle
   //   tx_org_workshop_sector
   //   tx_org_workshop_type
 
@@ -192,7 +196,7 @@ switch($confArr['full_wizardSupport'])
       'maxitems'  => 999,
       'MM'                  => 'tx_org_workshop_mm_tx_org_workshop_cat',
       'foreign_table'       => 'tx_org_workshop_cat',
-      'foreign_table_where' => 'AND tx_org_workshop_cat.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_cat.sorting',
+      'foreign_table_where' => 'AND tx_org_workshop_cat.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_cat.title',
       'wizards' => array(
         '_PADDING'  => 2,
         '_VERTICAL' => 0,
@@ -420,8 +424,8 @@ switch($confArr['full_wizardSupport'])
 $TCA['tx_org_workshop'] = array (
   'ctrl' => $TCA['tx_org_workshop']['ctrl'],
   'interface' => array (
-    'showRecordFieldList' =>  'title, uid_extern, text, static_countries, static_country_zones,  length, value, tx_org_tax, url, rating,'.
-                              'tx_org_workshop_cat, tx_org_workshop_sector, tx_org_workshop_degree, tx_org_workshop_type,'.
+    'showRecordFieldList' =>  'title, uid_extern, short, text, requirements, static_languages, static_countries, static_country_zones, location, length, recurrence, value, tx_org_tax, url, rating,'.
+                              'tx_org_workshop_cat, tx_org_workshop_focus, tx_org_workshop_sector, tx_org_workshop_audience, tx_org_workshop_degree, tx_org_workshop_course, tx_org_workshop_riskcycle, tx_org_workshop_type,'.
                               'fe_users,tx_org_headquarters,'.
                               'tx_org_cal,tx_org_news,'.
                               'logo, logoseo, image, imagecaption, imageseo, documents,'.
@@ -440,15 +444,37 @@ $TCA['tx_org_workshop'] = array (
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.uid_extern',
       'config'    => $conf_input_30_trim,
     ),
+    'short' => array (
+      'exclude' => $bool_exclude_default,
+      'label'   => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.short',
+      'config'  => $conf_text_50_10,
+    ),
     'text' => array (
       'exclude'   => $bool_exclude_default,
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.text',
       'config'    => $conf_text_rte,
     ),
-    'uid_extern'  => array (
+    'requirements' => array (
       'exclude'   => $bool_exclude_default,
-      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.uid_extern',
-      'config'    => $conf_input_30_trim,
+      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.requirements',
+      'config'    => $conf_text_rte,
+    ),
+    'static_languages' => array (
+      'exclude'   => $bool_exclude_default,
+      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.static_languages',
+      'config'    => array (
+        'type'      => 'select', 
+        'size'      => 5, 
+        'minitems'  => 0,
+        'maxitems'  => 99,
+        'xx_items' => array(
+          '0' => array(
+            '0' => '',
+          ),
+        ),
+        'foreign_table'       => 'static_languages',
+        'foreign_table_where' => ' ORDER BY static_languages.lg_name_en',
+      ),
     ),
     'static_countries' => array (
       'exclude'   => $bool_exclude_default,
@@ -464,7 +490,6 @@ $TCA['tx_org_workshop'] = array (
           ),
         ),
         'foreign_table'       => 'static_countries',
-        //'foreign_table_where' => 'AND tx_org_workshop_cat.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_cat.sorting',
       ),
     ),
     'static_country_zones' => array (
@@ -486,10 +511,20 @@ $TCA['tx_org_workshop'] = array (
         ),
       ),
     ),
+    'location'  => array (
+      'exclude'   => $bool_exclude_default,
+      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.location',
+      'config'    => $conf_input_80_trim,
+    ),
     'length'  => array (
       'exclude'   => $bool_exclude_default,
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.length',
       'config'    => $conf_input_30_trim,
+    ),
+    'recurrence'  => array (
+      'exclude'   => $bool_exclude_default,
+      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.recurrence',
+      'config'    => $conf_input_80_trim,
     ),
     'value'  => array (
       'exclude'   => $bool_exclude_default,
@@ -521,10 +556,14 @@ $TCA['tx_org_workshop'] = array (
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.rating',
       'config'    => $conf_input_30_trim,
     ),
-    'tx_org_workshop_cat'     => $arr_tx_org_workshop_cat,
-    'tx_org_workshop_sector'  => $arr_tx_org_workshop_cat,
-    'tx_org_workshop_degree'  => $arr_tx_org_workshop_cat,
-    'tx_org_workshop_type'    => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_cat'       => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_focus'     => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_sector'    => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_audience'  => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_degree'    => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_course'    => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_riskcycle' => $arr_tx_org_workshop_cat,
+    'tx_org_workshop_type'      => $arr_tx_org_workshop_cat,
     'fe_users' => array (
       'exclude' => $bool_exclude_default,
       'label'   => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.fe_users',
@@ -579,8 +618,8 @@ $TCA['tx_org_workshop'] = array (
     ),
   ),
   'types' => array (
-    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_workshop,           title, uid_extern, text;;;richtext[]:rte_transform[mode=ts];,static_countries, static_country_zones,  length, value, tx_org_tax, url, rating,'.
-                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_categories,         tx_org_workshop_cat, tx_org_workshop_sector, tx_org_workshop_degree, tx_org_workshop_type,'.
+    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_workshop,           title, uid_extern, short, text;;;richtext[]:rte_transform[mode=ts];, requirements;;;richtext[]:rte_transform[mode=ts];, static_languages, static_countries, static_country_zones, location, length, recurrence, value, tx_org_tax, url, rating,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_categories,         tx_org_workshop_cat, tx_org_workshop_focus, tx_org_workshop_sector, tx_org_workshop_audience, tx_org_workshop_degree, tx_org_workshop_course, tx_org_workshop_riskcycle, tx_org_workshop_type,'.
                                 '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_user_headquarter,   fe_users,tx_org_headquarters,'.
                                 '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_cal_news,           tx_org_cal,tx_org_news,'.
                                 '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_media,              logo, logoseo, image, imagecaption, imageseo, documents,'.
@@ -597,10 +636,66 @@ $TCA['tx_org_workshop']['columns']['fe_users']['config']['MM'] =
   'tx_org_workshop_mm_fe_users'; 
   // Relation fe_users
 
+  // Relation tx_org_workshop_audience
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['label'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_audience';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['size'] =
+  5; 
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_audience';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['foreign_table'] =
+  'tx_org_workshop_audience';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['foreign_table_where'] =
+  'AND tx_org_workshop_audience.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_audience.title';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['add']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_audience.add';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['add']['params']['table'] =
+  'tx_org_workshop_audience';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['list']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_audience.list';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['edit']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_audience.edit';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['list']['params']['table'] =
+  'tx_org_workshop_audience';
+if($bool_wizards_wo_add_and_list_for_catTables)
+{
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['add']);
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['wizards']['list']);
+}
+  // Relation tx_org_workshop_audience
+
   // Relation tx_org_workshop_cat
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_cat']['config']['size'] =
   5; 
   // Relation tx_org_workshop_cat
+
+  // Relation tx_org_workshop_course
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['label'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_course';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['size'] =
+  5; 
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_course';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['foreign_table'] =
+  'tx_org_workshop_course';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['foreign_table_where'] =
+  'AND tx_org_workshop_course.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_course.title';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['add']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_course.add';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['add']['params']['table'] =
+  'tx_org_workshop_course';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['list']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_course.list';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['edit']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_course.edit';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['list']['params']['table'] =
+  'tx_org_workshop_course';
+if($bool_wizards_wo_add_and_list_for_catTables)
+{
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['add']);
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['wizards']['list']);
+}
+  // Relation tx_org_workshop_course
 
   // Relation tx_org_workshop_degree
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['label'] =
@@ -612,7 +707,7 @@ $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['MM'] =
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['foreign_table'] =
   'tx_org_workshop_degree';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['foreign_table_where'] =
-  'AND tx_org_workshop_degree.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_degree.sorting';
+  'AND tx_org_workshop_degree.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_degree.title';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['wizards']['add']['title'] =
   'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_degree.add';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['wizards']['add']['params']['table'] =
@@ -630,6 +725,62 @@ if($bool_wizards_wo_add_and_list_for_catTables)
 }
   // Relation tx_org_workshop_degree
 
+  // Relation tx_org_workshop_focus
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['label'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_focus';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['size'] =
+  5; 
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_focus';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['foreign_table'] =
+  'tx_org_workshop_focus';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['foreign_table_where'] =
+  'AND tx_org_workshop_focus.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_focus.title';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['add']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_focus.add';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['add']['params']['table'] =
+  'tx_org_workshop_focus';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['list']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_focus.list';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['edit']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_focus.edit';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['list']['params']['table'] =
+  'tx_org_workshop_focus';
+if($bool_wizards_wo_add_and_list_for_catTables)
+{
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['add']);
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['wizards']['list']);
+}
+  // Relation tx_org_workshop_focus
+
+  // Relation tx_org_workshop_riskcycle
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['label'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_riskcycle';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['size'] =
+  5; 
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_riskcycle';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['foreign_table'] =
+  'tx_org_workshop_riskcycle';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['foreign_table_where'] =
+  'AND tx_org_workshop_riskcycle.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_riskcycle.title';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['add']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_riskcycle.add';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['add']['params']['table'] =
+  'tx_org_workshop_riskcycle';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['list']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_riskcycle.list';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['edit']['title'] =
+  'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_riskcycle.edit';
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['list']['params']['table'] =
+  'tx_org_workshop_riskcycle';
+if($bool_wizards_wo_add_and_list_for_catTables)
+{
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['add']);
+  unset($TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['wizards']['list']);
+}
+  // Relation tx_org_workshop_riskcycle
+
   // Relation tx_org_workshop_sector
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_sector']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_sector';
@@ -638,7 +789,7 @@ $TCA['tx_org_workshop']['columns']['tx_org_workshop_sector']['config']['MM'] =
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_sector']['config']['foreign_table'] =
   'tx_org_workshop_sector';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_sector']['config']['foreign_table_where'] =
-  'AND tx_org_workshop_sector.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_sector.sorting';
+  'AND tx_org_workshop_sector.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_sector.title';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_sector']['config']['wizards']['add']['title'] =
   'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_sector.add';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_sector']['config']['wizards']['add']['params']['table'] =
@@ -672,7 +823,7 @@ $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['MM'] =
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['foreign_table'] =
   'tx_org_workshop_type';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['foreign_table_where'] =
-  'AND tx_org_workshop_type.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_type.sorting';
+  'AND tx_org_workshop_type.' . $str_store_record_conf . ' ORDER BY tx_org_workshop_type.title';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['wizards']['add']['title'] =
   'LLL:EXT:org_workshops/locallang_db.xml:wizard.tx_org_workshop_type.add';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['wizards']['add']['params']['table'] =
@@ -785,7 +936,7 @@ if($bool_wizards_wo_add_and_list)
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //
-  // tx_org_workshop_cat
+  // tx_org_workshop_cat (master for category tables)
 
 $TCA['tx_org_workshop_cat'] = array (
   'ctrl' => $TCA['tx_org_workshop_cat']['ctrl'],
@@ -834,7 +985,85 @@ $TCA['tx_org_workshop_cat']['columns']['tx_org_workshop']['config']['wizards']['
 $TCA['tx_org_workshop_cat']['columns']['tx_org_workshop']['config']['wizards']['list']['params']['table'] =
   'tx_org_workshop';
   // Relation tx_org_workshop
-  // tx_org_workshop_cat
+  // tx_org_workshop_cat (master for category tables)
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  // tx_org_workshop_audience
+
+$TCA['tx_org_workshop_audience'] = array (
+  'ctrl' => $TCA['tx_org_workshop_audience']['ctrl'],
+  'interface' => array (
+    'showRecordFieldList' =>  'title,tx_org_workshop,'.
+                              'hidden'
+  ),
+  'feInterface' => $TCA['tx_org_workshop_audience']['feInterface'],
+  'columns' => array (
+    'title' => array (
+      'exclude' => 0,
+      'label' => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_audience.title',
+      'config'  => $conf_input_30_trimRequired,
+    ),
+    'tx_org_workshop' => $TCA['tx_org_workshop_cat']['columns']['tx_org_workshop'],
+    'hidden'          => $conf_hidden,
+  ),
+  'types' => array (
+    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_audience.div_audience,   title,tx_org_workshop,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_audience.div_access,   hidden'.
+                                ''),
+  ),
+);
+
+  // Relation tx_org_workshop
+$TCA['tx_org_workshop_audience']['columns']['tx_org_workshop']['config']['maxitems'] = 999;
+unset($TCA['tx_org_workshop_degeree']['columns']['tx_org_workshop']['config']['items']);
+$TCA['tx_org_workshop_audience']['columns']['tx_org_workshop']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_audience';
+$TCA['tx_org_workshop_audience']['columns']['tx_org_workshop']['config']['MM_opposite_field'] =
+  'tx_org_workshop_audience';
+  // Relation tx_org_workshop
+  // tx_org_workshop_audience
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  // tx_org_workshop_course
+
+$TCA['tx_org_workshop_course'] = array (
+  'ctrl' => $TCA['tx_org_workshop_course']['ctrl'],
+  'interface' => array (
+    'showRecordFieldList' =>  'title,tx_org_workshop,'.
+                              'hidden'
+  ),
+  'feInterface' => $TCA['tx_org_workshop_course']['feInterface'],
+  'columns' => array (
+    'title' => array (
+      'exclude' => 0,
+      'label' => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_course.title',
+      'config'  => $conf_input_30_trimRequired,
+    ),
+    'tx_org_workshop' => $TCA['tx_org_workshop_cat']['columns']['tx_org_workshop'],
+    'hidden'          => $conf_hidden,
+  ),
+  'types' => array (
+    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_course.div_course,   title,tx_org_workshop,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_course.div_access,   hidden'.
+                                ''),
+  ),
+);
+
+  // Relation tx_org_workshop
+$TCA['tx_org_workshop_course']['columns']['tx_org_workshop']['config']['maxitems'] = 999;
+unset($TCA['tx_org_workshop_degeree']['columns']['tx_org_workshop']['config']['items']);
+$TCA['tx_org_workshop_course']['columns']['tx_org_workshop']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_course';
+$TCA['tx_org_workshop_course']['columns']['tx_org_workshop']['config']['MM_opposite_field'] =
+  'tx_org_workshop_course';
+  // Relation tx_org_workshop
+  // tx_org_workshop_course
 
 
 
@@ -874,6 +1103,84 @@ $TCA['tx_org_workshop_degree']['columns']['tx_org_workshop']['config']['MM_oppos
   'tx_org_workshop_degree';
   // Relation tx_org_workshop
   // tx_org_workshop_degree
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  // tx_org_workshop_focus
+
+$TCA['tx_org_workshop_focus'] = array (
+  'ctrl' => $TCA['tx_org_workshop_focus']['ctrl'],
+  'interface' => array (
+    'showRecordFieldList' =>  'title,tx_org_workshop,'.
+                              'hidden'
+  ),
+  'feInterface' => $TCA['tx_org_workshop_focus']['feInterface'],
+  'columns' => array (
+    'title' => array (
+      'exclude' => 0,
+      'label' => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_focus.title',
+      'config'  => $conf_input_30_trimRequired,
+    ),
+    'tx_org_workshop' => $TCA['tx_org_workshop_cat']['columns']['tx_org_workshop'],
+    'hidden'          => $conf_hidden,
+  ),
+  'types' => array (
+    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_focus.div_focus,   title,tx_org_workshop,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_focus.div_access,   hidden'.
+                                ''),
+  ),
+);
+
+  // Relation tx_org_workshop
+$TCA['tx_org_workshop_focus']['columns']['tx_org_workshop']['config']['maxitems'] = 999;
+unset($TCA['tx_org_workshop_degeree']['columns']['tx_org_workshop']['config']['items']);
+$TCA['tx_org_workshop_focus']['columns']['tx_org_workshop']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_focus';
+$TCA['tx_org_workshop_focus']['columns']['tx_org_workshop']['config']['MM_opposite_field'] =
+  'tx_org_workshop_focus';
+  // Relation tx_org_workshop
+  // tx_org_workshop_focus
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //
+  // tx_org_workshop_riskcycle
+
+$TCA['tx_org_workshop_riskcycle'] = array (
+  'ctrl' => $TCA['tx_org_workshop_riskcycle']['ctrl'],
+  'interface' => array (
+    'showRecordFieldList' =>  'title,tx_org_workshop,'.
+                              'hidden'
+  ),
+  'feInterface' => $TCA['tx_org_workshop_riskcycle']['feInterface'],
+  'columns' => array (
+    'title' => array (
+      'exclude' => 0,
+      'label' => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_riskcycle.title',
+      'config'  => $conf_input_30_trimRequired,
+    ),
+    'tx_org_workshop' => $TCA['tx_org_workshop_cat']['columns']['tx_org_workshop'],
+    'hidden'          => $conf_hidden,
+  ),
+  'types' => array (
+    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_riskcycle.div_riskcycle,   title,tx_org_workshop,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_riskcycle.div_access,   hidden'.
+                                ''),
+  ),
+);
+
+  // Relation tx_org_workshop
+$TCA['tx_org_workshop_riskcycle']['columns']['tx_org_workshop']['config']['maxitems'] = 999;
+unset($TCA['tx_org_workshop_degeree']['columns']['tx_org_workshop']['config']['items']);
+$TCA['tx_org_workshop_riskcycle']['columns']['tx_org_workshop']['config']['MM'] =
+  'tx_org_workshop_mm_tx_org_workshop_riskcycle';
+$TCA['tx_org_workshop_riskcycle']['columns']['tx_org_workshop']['config']['MM_opposite_field'] =
+  'tx_org_workshop_riskcycle';
+  // Relation tx_org_workshop
+  // tx_org_workshop_riskcycle
 
 
 

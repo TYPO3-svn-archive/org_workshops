@@ -1,4 +1,11 @@
+0.4.0
+  11-02-13
+  New features
+  - new tables: audience, course, focus, riskcycle
+    Thanks to http://sesamnet.ch
+  
 0.3.1
   11-01-21
   Initial Release
+  Thanks to http://zeitoffiziere.de
   Dirk Wildt  <http://wildt.at.die-netzmacher.de>

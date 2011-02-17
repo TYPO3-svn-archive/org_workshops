@@ -1,9 +1,9 @@
 plugin.org {
 
-  # cat=Organiser Workshop/page/351; type=+int; label= page uid workshop:Uid of your workshop page
+  # cat=Organiser Workshops/page/351; type=+int; label= page uid workshop:Uid of your workshop page
   pages.workshops =
 
-  # cat=Organiser Workshop/page/352; type=+int; label= sysfolder uid workshop:Uid of the sysfolder with the workshop data
+  # cat=Organiser Workshops/page/352; type=+int; label= sysfolder uid workshop:Uid of the sysfolder with the workshop data
   sysfolder.workshops =
 
 }
