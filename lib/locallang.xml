@@ -2,18 +2,18 @@
 <T3locallang>
   <meta type="array">
     <type>module</type>
-    <description>Language labels for plugin &quot;tx_browser_pi1&quot;</description>
+    <description>Language labels for tx_org_workshops</description>
   </meta>
   <data type="array">
     <languageKey index="default" type="array">
       <label index="promptQuickstartBody"><![CDATA[
-        If you like to start with the workshop modul of the Organiser immediately, start with the default configuration of the extension manager.
+        If you like to start with the Organiser +Workshop modul immediately, start with the default configuration of the extension manager.
         You have to take care of two items:
         <br />
         <br />
         <ol>
           <li>
-            Linking from a record of one Organiser workshop table to a record of another Organiser workshop table is possible only, if the records are store in the same directory.
+            Linking from a workshop record to a record of another Organiser table is possible only, if the records are store in the same directory.
           </li>
           <li>
             "Store record configuration" has set to [EASY]. Please check below.
@@ -28,13 +28,13 @@
     </languageKey>
     <languageKey index="de" type="array">
       <label index="promptQuickstartBody"><![CDATA[
-        Wenn Du mit dem Workshop-Modul des Organisers sofort starten m&ouml;chtest, dann arbeite mit den Standardeinstellungen des Extension
+        Wenn Du mit dem Organiser +Workshops sofort starten m&ouml;chtest, dann arbeite mit den Standardeinstellungen des Extension
         Managers. Du musst nur zwei Dinge beachten:
         <br />
         <br />
         <ol>
           <li>
-            Du kannst im Backend nur zwischen Datens&auml;tzen von Organiser Workshop-Tabellen verlinken, die im selben Verzeichnis liegen.
+            Du kannst im Backend nur zwischen Datens&auml;tzen vom Workshop zu anderen Organiser-Tabellen verlinken, die im selben Verzeichnis liegen.
           </li>
           <li>
             "Store record configuration" muss auf [EASY] gesetzt sein (siehe unten).

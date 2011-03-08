@@ -327,7 +327,7 @@ $showRecordFieldList = $showRecordFieldList.',tx_org_workshop_premium,tx_org_wor
 $TCA['tx_org_headquarters']['interface']['showRecordFieldList'] = $showRecordFieldList;
   // Add fields to TCAshowReacordFieldList
 
-  // Add fields to TCAcolumns: premium, wokrshop
+  // Add fields to TCAcolumns: premium, workshop
 t3lib_extMgm::addTCAcolumns(
   'tx_org_headquarters', 
   array
@@ -350,7 +350,7 @@ $TCA['tx_org_headquarters']['columns']['tx_org_workshop']['config']['MM']       
   'tx_org_workshop_mm_tx_org_headquarters';
 $TCA['tx_org_headquarters']['columns']['tx_org_workshop']['config']['MM_opposite_field']  =
   'tx_org_headquarters';
-  // Add fields to TCAcolumns: premium, wokrshop
+  // Add fields to TCAcolumns: premium, workshop
 
   // Insert fields to TCAtypes, which haven't an own div
 t3lib_extMgm::addToAllTCAtypes('tx_org_headquarters', 'tx_org_workshop_premium', '', 'before:mail_address');

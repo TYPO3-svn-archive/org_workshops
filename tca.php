@@ -261,14 +261,6 @@ switch($confArr['full_wizardSupport'])
     'softref' => 'typolink',
   );
 
-  $conf_datetime = array (
-    'type'    => 'input',
-    'size'    => '10',
-    'max'     => '20',
-    'eval'    => 'datetime',
-    'default' => mktime(date('H'),date('i'),0,date('m'),date('d'),date('Y'))
-  );
-  
   $conf_file_document = array (
     'type'          => 'group',
     'internal_type' => 'file',
@@ -314,12 +306,6 @@ switch($confArr['full_wizardSupport'])
     'type' => 'text',
     'cols' => '30', 
     'rows' => '5',
-  );
-  $conf_text_30_05_trimRequired = array (
-    'type' => 'text',
-    'cols' => '30', 
-    'rows' => '5',
-    'eval' => 'trim,required'
   );
   
   $conf_text_50_10 = array (
@@ -396,19 +382,6 @@ switch($confArr['full_wizardSupport'])
       ),
       'exclusiveKeys' => '-1,-2',
       'foreign_table' => 'fe_groups'
-    )
-  );
-  $conf_pages = array (
-    'label'   => 'LLL:EXT:org_workshops/locallang_db.xml:tca_phrase.pages',
-    'exclude' => $bool_exclude_none,
-    'config'  => array (
-      'type'          => 'group',
-      'internal_type' => 'db',
-      'allowed'       => 'pages',
-      'size'          => '10',
-      'maxitems'      => '99',
-      'minitems'      => '0',
-      'show_thumbs'   => '1'
     )
   );
   // Other wizards and config drafts
