@@ -397,7 +397,9 @@ switch($confArr['full_wizardSupport'])
 $TCA['tx_org_workshop'] = array (
   'ctrl' => $TCA['tx_org_workshop']['ctrl'],
   'interface' => array (
-    'showRecordFieldList' =>  'title, uid_extern, short, text, requirements, static_languages, static_countries, static_country_zones, location, length, recurrence, value, tx_org_tax, url, rating,'.
+    'showRecordFieldList' =>  'title, uid_extern, short, text, static_languages, static_countries, static_country_zones, location, length, recurrence, value, tx_org_tax, url, rating,'.
+                              'requirements,'.
+                              'subject,'.
                               'tx_org_workshop_cat, tx_org_workshop_focus, tx_org_workshop_sector, tx_org_workshop_audience, tx_org_workshop_degree, tx_org_workshop_course, tx_org_workshop_riskcycle, tx_org_workshop_type,'.
                               'fe_users,tx_org_headquarters,'.
                               'tx_org_cal,tx_org_news,'.
@@ -425,11 +427,6 @@ $TCA['tx_org_workshop'] = array (
     'text' => array (
       'exclude'   => $bool_exclude_default,
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.text',
-      'config'    => $conf_text_rte,
-    ),
-    'requirements' => array (
-      'exclude'   => $bool_exclude_default,
-      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.requirements',
       'config'    => $conf_text_rte,
     ),
     'static_languages' => array (
@@ -529,6 +526,16 @@ $TCA['tx_org_workshop'] = array (
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.rating',
       'config'    => $conf_input_30_trim,
     ),
+    'requirements' => array (
+      'exclude'   => $bool_exclude_default,
+      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.requirements',
+      'config'    => $conf_text_rte,
+    ),
+    'subject' => array (
+      'exclude'   => $bool_exclude_default,
+      'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.subject',
+      'config'    => $conf_text_rte,
+    ),
     'tx_org_workshop_cat'       => $arr_tx_org_workshop_cat,
     'tx_org_workshop_focus'     => $arr_tx_org_workshop_cat,
     'tx_org_workshop_sector'    => $arr_tx_org_workshop_cat,
@@ -591,7 +598,9 @@ $TCA['tx_org_workshop'] = array (
     ),
   ),
   'types' => array (
-    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_workshop,           title, uid_extern, short, text;;;richtext[]:rte_transform[mode=ts];, requirements;;;richtext[]:rte_transform[mode=ts];, static_languages, static_countries, static_country_zones, location, length, recurrence, value, tx_org_tax, url, rating,'.
+    '0' => array('showitem' =>  '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_workshop,           title, uid_extern, short, text;;;richtext[]:rte_transform[mode=ts];, static_languages, static_countries, static_country_zones, location, length, recurrence, value, tx_org_tax, url, rating,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_requirements,       requirements;;;richtext[]:rte_transform[mode=ts];,'.
+                                '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_subject,            subject;;;richtext[]:rte_transform[mode=ts];,'.
                                 '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_categories,         tx_org_workshop_cat, tx_org_workshop_focus, tx_org_workshop_sector, tx_org_workshop_audience, tx_org_workshop_degree, tx_org_workshop_course, tx_org_workshop_riskcycle, tx_org_workshop_type,'.
                                 '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_user_headquarter,   fe_users,tx_org_headquarters,'.
                                 '--div--;LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.div_cal_news,           tx_org_cal,tx_org_news,'.

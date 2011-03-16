@@ -126,20 +126,6 @@ plugin.tx_browser_pi1 {
               crop = 60 | ... | 1
             }
           }
-          xxxstatic_country_zones = COA
-          xxxstatic_country_zones {
-            10 = USER
-            10 {
-              includeLibs = EXT:browser/lib/class.tx_browser_typoscript.php
-              userFunc = tx_browser_typoscript->static_country_zones
-              userFunc {
-                zones = TEXT
-                zones {
-                  value = ###TX_ORG_WORKSHOP.STATIC_COUNTRY_ZONES###
-                }
-              }
-            }
-          }
         }
         filter {
           static_country_zones {
@@ -158,7 +144,7 @@ plugin.tx_browser_pi1 {
                   }
                 }
               }
-              wrap = <span class="selectbox">|</span>
+              wrap = <span class="selectbox selectbox_static_country_zones">|</span>
             }
           }
           tx_org_headquarters {
@@ -176,7 +162,7 @@ plugin.tx_browser_pi1 {
                   }
                 }
               }
-              wrap = <span class="selectbox">|</span>
+              wrap = <span class="selectbox selectbox_tx_org_headquarters">|</span>
             }
           }
           tx_org_workshop {
@@ -194,7 +180,7 @@ plugin.tx_browser_pi1 {
                   }
                 }
               }
-              wrap = <span class="selectbox">|</span>
+              wrap = <span class="selectbox selectbox_tx_org_workshop_rating">|</span>
             }
           }
           tx_org_workshop_cat {
@@ -212,7 +198,7 @@ plugin.tx_browser_pi1 {
                   }
                 }
               }
-              wrap = <span class="selectbox">|</span>
+              wrap = <span class="selectbox selectbox_tx_org_workshop_cat">|</span>
             }
           }
           tx_org_workshop_degree {
@@ -230,7 +216,7 @@ plugin.tx_browser_pi1 {
                   }
                 }
               }
-              wrap = <span class="selectbox">|</span>
+              wrap = <span class="selectbox selectbox_tx_org_workshop_degree">|</span>
             }
           }
           tx_org_workshop_sector {
@@ -248,7 +234,7 @@ plugin.tx_browser_pi1 {
                   }
                 }
               }
-              wrap = <span class="selectbox">|</span>
+              wrap = <span class="selectbox selectbox_tx_org_workshop_sector">|</span>
             }
           }
         }

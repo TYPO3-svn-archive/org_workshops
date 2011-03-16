@@ -42,6 +42,8 @@
       <label index="tx_org_workshop">Workshops</label>
       <label index="tx_org_workshop.div_workshop">Workshop</label>
       <label index="tx_org_workshop.div_categories">Categories</label>
+      <label index="tx_org_workshop.div_requirements">Requirements</label>
+      <label index="tx_org_workshop.div_subject">Subject</label>
       <label index="tx_org_workshop.div_user_headquarter"><![CDATA[User & provider]]></label>
       <label index="tx_org_workshop.div_cal_news"><![CDATA[Calender & news]]></label>
       <label index="tx_org_workshop.div_media">Media</label>
@@ -52,7 +54,6 @@
 
       <label index="tx_org_workshop.short">Short</label>
       <label index="tx_org_workshop.text">Bodytext</label>
-      <label index="tx_org_workshop.requirements">Requirements</label>
       <label index="tx_org_workshop.static_languages">Languages</label>
       <label index="tx_org_workshop.static_countries">Country</label>
       <label index="tx_org_workshop.static_country_zones">State</label>
@@ -63,6 +64,8 @@
       <label index="tx_org_workshop.tx_org_tax">Tax</label>
       <label index="tx_org_workshop.url">URL</label>
       <label index="tx_org_workshop.rating">Rating</label>
+      <label index="tx_org_workshop.requirements">Requirements</label>
+      <label index="tx_org_workshop.subject">Subject</label>
 
       <label index="tx_org_workshop.tx_org_workshop_audience">Audience</label>
       <label index="tx_org_workshop.tx_org_workshop_cat">Category</label>
@@ -198,6 +201,8 @@
       <label index="tx_org_workshop">Workshops</label>
       <label index="tx_org_workshop.div_workshop">Workshop</label>
       <label index="tx_org_workshop.div_categories">Kategorien</label>
+      <label index="tx_org_workshop.div_requirements">Voraussetzungen</label>
+      <label index="tx_org_workshop.div_subject">Thema</label>
       <label index="tx_org_workshop.div_user_headquarter"><![CDATA[Kontakt & Anbieter]]></label>
       <label index="tx_org_workshop.div_cal_news"><![CDATA[Kalender & Nachrichten]]></label>
       <label index="tx_org_workshop.div_media">Medien</label>
@@ -207,7 +212,6 @@
       <label index="tx_org_workshop.uid_extern">Externe ID</label>
       <label index="tx_org_workshop.short">Kurzbeschreibung</label>
       <label index="tx_org_workshop.text">Text</label>
-      <label index="tx_org_workshop.requirements">Voraussetzungen</label>
       <label index="tx_org_workshop.static_languages">Sprachen</label>
       <label index="tx_org_workshop.static_countries">Land</label>
       <label index="tx_org_workshop.static_country_zones">Bundesland, Kanton</label>
@@ -218,6 +222,8 @@
       <label index="tx_org_workshop.tx_org_tax">inkl. MWSt.</label>
       <label index="tx_org_workshop.url">URL</label>
       <label index="tx_org_workshop.rating">Bewertung</label>
+      <label index="tx_org_workshop.requirements">Voraussetzungen</label>
+      <label index="tx_org_workshop.subject">Thema</label>
       
       <label index="tx_org_workshop.tx_org_workshop_audience">Zielgruppe</label>
       <label index="tx_org_workshop.tx_org_workshop_cat">Kategorie</label>
