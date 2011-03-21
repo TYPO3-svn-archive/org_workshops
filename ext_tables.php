@@ -138,16 +138,16 @@ switch(true) {
   case($llStatic == 'de'):
       // German
     $TCA['pages']['columns']['module']['config']['items'][] = 
-       array('Org: Workshop', 'org_workshop', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
+       array('Org: Workshop', 'org_wrkshp', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
     break;
   default:
       // English
     $TCA['pages']['columns']['module']['config']['items'][] = 
-       array('Org: Workshop', 'org_workshop', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
+       array('Org: Workshop', 'org_wrkshp', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
 }
   // Case $llStatic
 
-$ICON_TYPES['org_workshop']   = array('icon' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
+$ICON_TYPES['org_wrkshp']   = array('icon' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
 
   // Add pagetree icons
 
