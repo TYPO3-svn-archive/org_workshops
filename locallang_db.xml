@@ -34,7 +34,7 @@
       <label index="tca_phrase.keywords">Keywords for Search Engine Optimisation (CSV: comma separated values)</label>
       <label index="fe_users.div_tx_org_workshop">Workshops</label>
       <label index="fe_users.tx_org_workshop">Workshops</label>
-      <label index="tx_org_cal.div_tx_org_workshop">Workshops</label>
+      <label index="tx_org_cal.type.tx_org_workshop">Take it from the workshops table</label>
       <label index="tx_org_cal.tx_org_workshop">Workshops</label>
       <label index="tx_org_headquarters.div_tx_org_workshop">Workshops</label>
       <label index="tx_org_headquarters.tx_org_workshop">Workshop</label>
@@ -192,7 +192,7 @@
 
       <label index="fe_users.div_tx_org_workshop">Workshops</label>
       <label index="fe_users.tx_org_workshop">Workshops</label>
-      <label index="tx_org_cal.div_tx_org_workshop">Workshops</label>
+      <label index="tx_org_cal.type.tx_org_workshop">Aus den Workshops</label>
       <label index="tx_org_cal.tx_org_workshop">Workshops</label>
       <label index="tx_org_headquarters.div_tx_org_workshop">Workshops</label>
       <label index="tx_org_headquarters.tx_org_workshop">Workshop</label>

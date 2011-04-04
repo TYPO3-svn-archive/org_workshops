@@ -25,6 +25,28 @@
       <label index="promptGeneralInfo"><![CDATA[
         All alignments in the extension manager effect the TYPO3 backend only.
       ]]></label>
+      <label index="promptStoreRecordWarn"><![CDATA[
+        Your Organiser stores records
+        <ul style="list-style:outside;">
+          <li>
+            [###ORG_STORERECORD###]
+          </li>
+        </ul>
+        but your Organiser +Workshops stores records
+        <ul style="list-style:outside;">
+          <li>
+            [###WKS_STORERECORD###]
+          </li>
+        </ul>
+        It is recommended to take the same configuration for both Organiser and Organiser +Workshops.
+      ]]></label>
+      <label index="promptStoreRecordOk"><![CDATA[
+        Organiser and Organiser +Workshops have the same configuration for storing records:
+        [###WKS_STORERECORD###]. The same configuration is recommended.
+      ]]></label>
+      <label index="promptSaveTwice"><![CDATA[
+        Please save your changing twice! Prompts will have a chance for updating.
+      ]]></label>
     </languageKey>
     <languageKey index="de" type="array">
       <label index="promptQuickstartBody"><![CDATA[
@@ -45,6 +67,29 @@
       ]]></label>
       <label index="promptGeneralInfo"><![CDATA[
         Alle Einstellungen im Extension Manager beeinflussen ausschlie&szlig;lich das TYPO3-Backend.
+      ]]></label>
+      <label index="promptStoreRecordWarn"><![CDATA[
+        Dein Organiser speichert Dateien so
+        <ul style="list-style:outside;">
+          <li>
+            [###ORG_STORERECORD###]
+          </li>
+        </ul>
+        aber Dein Organiser +Workshops speichert diese so
+        <ul style="list-style:outside;">
+          <li>
+            [###WKS_STORERECORD###]
+          </li>
+        </ul>
+        Wir empfehlen f&uuml;r Organiser +Workshops die gleiche Konfiguration wie beim Organiser - also
+        <strong>[###ORG_STORERECORD###]</strong>.
+      ]]></label>
+      <label index="promptStoreRecordOk"><![CDATA[
+        Organiser und Organiser +Workshops haben die gleiche Konfiguration f&uuml;r das Speichern von
+        Datens&auml;tzen: [###WKS_STORERECORD###]. So ist es auch empfohlen.
+      ]]></label>
+      <label index="promptSaveTwice"><![CDATA[
+        Speichere Deine &Auml;nderungen bitte zwei Mal. Mitteilungen werden dann korrekt aktualisiert.
       ]]></label>
     </languageKey>
   </data>

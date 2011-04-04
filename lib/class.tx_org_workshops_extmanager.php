@@ -28,7 +28,7 @@
 * @author    Dirk Wildt <http://wildt.at.die-netzmacher.de>
 * @package    TYPO3
 * @subpackage    org
-* @version 0.3.1
+* @version 0.4.1
 * @since 0.3.1
 */
 
@@ -38,8 +38,8 @@
  *
  *
  *
- *   49: class tx_org_extmanager
- *   67:     function promptQuickstart()
+ *   48: class tx_org_extmanager
+ *   66:     function promptQuickstart()
  *
  * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -61,7 +61,7 @@ class tx_org_workshops_extmanager
  *
  * @return  string    message wrapped in HTML
  * @since 0.3.1
- * @version 0.3.1
+ * @version 0.4.1
  */
   function promptQuickstart()
   {
@@ -71,9 +71,49 @@ class tx_org_workshops_extmanager
 //.message-warning
 //.message-error
 
-      $str_prompt = null;
+      $str_prompt = '';
+
+      $str_prompt .= '
+<div class="typo3-message message-warning">
+  <div class="message-body">
+    ' . $GLOBALS['LANG']->sL('LLL:EXT:org_workshops/lib/locallang.xml:promptSaveTwice') . '
+  </div>
+</div>
+';
+
+    $confArrWks = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['org_workshops']);
+    $confArrOrg = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['org']);
+
+
+    if (!empty ($confArrWks['store_records']) AND $confArrWks['store_records'] != $confArrOrg['store_records'])
+    {
+      $str_phrase = $GLOBALS['LANG']->sL('LLL:EXT:org_workshops/lib/locallang.xml:promptStoreRecordWarn');
+      $str_phrase = str_replace('###WKS_STORERECORD###', $confArrWks['store_records'], $str_phrase);
+      $str_phrase = str_replace('###ORG_STORERECORD###', $confArrOrg['store_records'], $str_phrase);
 
       $str_prompt = $str_prompt.'
+<div class="typo3-message message-information">
+  <div class="message-body">
+    ' . $str_phrase . '
+  </div>
+</div>
+';
+    }
+    if (!empty ($confArrWks['store_records']) AND $confArrWks['store_records'] == $confArrOrg['store_records'])
+    {
+      $str_phrase = $GLOBALS['LANG']->sL('LLL:EXT:org_workshops/lib/locallang.xml:promptStoreRecordOk');
+      $str_phrase = str_replace('###WKS_STORERECORD###', $confArrWks['store_records'], $str_phrase);
+
+      $str_prompt = $str_prompt.'
+<div class="typo3-message message-ok">
+  <div class="message-body">
+    ' . $str_phrase . '
+  </div>
+</div>
+';
+    }
+
+      $str_prompt .= '
 <div class="typo3-message message-information">
   <div class="message-body">
     ' . $GLOBALS['LANG']->sL('LLL:EXT:org_workshops/lib/locallang.xml:promptQuickstartBody'). '

@@ -1,9 +1,16 @@
 0.4.1
+  11-04-04
+  New features
+  * integration of workshops in calender (EXT:org)
+  * EM: quickstart checks store_records option conformity to EXT:org
+  * Ulfried Herrmann  <http://herrmann.at.die-netzmacher.de>
+
+0.4.1
   11-03-16
   New features
   * CSS improvements: default.tmpl got a lot of classes
   * tx_org_workshop got new field subject (RTE)
-  
+
 0.4.0
   11-02-13
   New features

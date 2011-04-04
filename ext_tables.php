@@ -177,11 +177,11 @@ $arr_tx_org_workshop = array (
   'label'   => 'LLL:EXT:org_workshops/locallang_db.xml:tca_phrase.workshop',
   'config'  => array (
     'type'     => 'select', 
-    'size'     =>   10, 
+    'size'     =>   30,
     'minitems' =>    0,
-    'maxitems' => 999,
+    'maxitems' =>    1,
     'MM'                  => '%MM%',
-    'MM_opposite_field'   => 'fe_users',
+    'MM_opposite_field'   => '%MM_opposite_field%',
     'foreign_table'       => 'tx_org_workshop',
     'foreign_table_where' => 'AND tx_org_workshop.' . $str_store_record_conf . ' ORDER BY tx_org_workshop.title',
     'wizards' => array(
@@ -275,46 +275,41 @@ if($bool_wizards_wo_add_and_list)
   // tx_org_cal
 t3lib_div::loadTCA('tx_org_cal');
 
-  // Add field tx_org_workshop
+  // typeicons: Add type_icon
+$TCA['tx_org_cal']['ctrl']['typeicons']['tx_org_repertoire'] =
+  t3lib_extmgm::extRelPath($_EXTKEY) . 'ext_icon/workshop.gif';
+  // typeicons: Add type_icon
+
+  // showRecordFieldList: Add field tx_org_workshop
 $showRecordFieldList = $TCA['tx_org_cal']['interface']['showRecordFieldList'];
 $showRecordFieldList = $showRecordFieldList.',tx_org_workshop';
 $TCA['tx_org_cal']['interface']['showRecordFieldList'] = $showRecordFieldList;
-  // Add field tx_org_workshop
+  // showRecordFieldList: Add field tx_org_workshop
 
-  // Add field tx_org_workshop
+  // columns: Add field tx_org_workshop
 $TCA['tx_org_cal']['columns']['tx_org_workshop']                  = $arr_tx_org_workshop;
 $TCA['tx_org_cal']['columns']['tx_org_workshop']['label']         =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_cal.tx_org_workshop';
 $TCA['tx_org_cal']['columns']['tx_org_workshop']['config']['MM']  = 'tx_org_workshop_mm_tx_org_cal';
-  // Add field tx_org_workshop
+  // columns: Add field tx_org_workshop
 
-  // Insert div [workshop] at position $int_div_position
-$str_showitem     = $TCA['tx_org_cal']['types']['0']['showitem'];
-$arr_showitem     = explode('--div--;', $str_showitem);
-$int_div_position = 2;
-foreach($arr_showitem as $key => $value)
-{
-  switch(true)
-  {
-    case($key < $int_div_position):
-        // Don't move divs, which are placed before the new tab
-      $arr_new_showitem[$key] = $value;
-      break;
-    case($key == $int_div_position):
-        // Insert the new tab
-      $arr_new_showitem[$key]     = 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_cal.div_tx_org_workshop, tx_org_workshop,';
-        // Move former tab one position behind
-      $arr_new_showitem[$key + 1] = $value;
-      break;
-    case($key > $int_div_position):
-        // Move divs, which are placed after the new tab one position behind
-      $arr_new_showitem[$key + 1] = $value;
-      break;
-  }
-}
-$str_showitem                                 = implode('--div--;', $arr_new_showitem);
-$TCA['tx_org_cal']['types']['0']['showitem']  = $str_showitem;
-  // Insert div [workshop] at position $int_div_position
+  // columns: extend type
+$TCA['tx_org_cal']['columns']['type']['config']['items']['tx_org_workshop'] = array
+(
+  '0' => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_cal.type.tx_org_workshop',
+  '1' => 'tx_org_workshop',
+  '2' => 'EXT:org_workshops/ext_icon/workshop.gif',
+);
+  // columns: extend type
+
+  // Insert type [repertoire] with fields to TCAtypes
+$TCA['tx_org_cal']['types']['tx_org_workshop']['showitem'] =
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_calendar,    type,title,datetime,tx_org_caltype,tx_org_workshop,'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_event,       tx_org_location,tx_org_calentrance,'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_department,  tx_org_department,'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_control,     hidden;;1;;,fe_group'.
+  ''
+;
   // tx_org_cal
 
   // tx_org_headquarters
