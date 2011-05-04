@@ -1,15 +1,14 @@
-0.4.2
-  11-03-27
-  Maintenance
-  * TCA tx_org_workshop > country zones empty item added
-  * Ulfried Herrmann <http://herrmann.at.die-netzmacher.de>
+0.4.3
+  11-05-04
+  Improvements
+  * CSS. Effected file: static/workshop/351/setup.txt
 
-0.4.1
+0.4.2
   11-04-04
   New features
   * integration of workshops in calender (EXT:org)
   * EM: quickstart checks store_records option conformity to EXT:org
-  * Ulfried Herrmann  <http://herrmann.at.die-netzmacher.de>
+  * Ulfried Herrmann  <http://herrmann.at.die-netzmacher.de>:
 
 0.4.1
   11-03-16
