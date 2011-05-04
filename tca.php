@@ -8,7 +8,7 @@ if (!defined ('TYPO3_MODE'))
 
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // INDEX
   // -----
   // Configuration by the extension manager
@@ -31,7 +31,7 @@ if (!defined ('TYPO3_MODE'))
 
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // Configuration by the extension manager
 
 $bool_LL = false;
@@ -87,7 +87,7 @@ if (strtolower(substr($confArr['full_wizardSupport'], 0, strlen('no'))) == 'no')
   // Store record configuration
 $bool_wizards_wo_add_and_list = false;
 $str_marker_pid               = '###CURRENT_PID###';
-switch($confArr['store_records']) 
+switch($confArr['store_records'])
 {
   case('Multi grouped: record groups in different directories'):
     $str_store_record_conf        = 'pid IN (###PAGE_TSCONFIG_IDLIST###)';
@@ -107,7 +107,7 @@ switch($confArr['store_records'])
 }
   // Store record configuration
 
-switch($confArr['full_wizardSupport']) 
+switch($confArr['full_wizardSupport'])
 {
   case('No'):
     $bool_wizards_wo_add_and_list_for_catTables = true;
@@ -121,9 +121,9 @@ switch($confArr['full_wizardSupport'])
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 
+    //
     // General Configuration
-    
+
     // JSopenParams for all wizards
   $JSopenParams     = 'height=680,width=800,status=0,menubar=0,scrollbars=1';
     // Rows of fe_group select box
@@ -133,13 +133,13 @@ switch($confArr['full_wizardSupport'])
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 
+    //
     // Wizard fe_users
-  
+
     // Wizard for fe_users
   $arr_config_feuser = array(
-    'type'                => 'select', 
-    'size'                => 30, 
+    'type'                => 'select',
+    'size'                => 30,
     'minitems'            => 0,
     'maxitems'            => 999,
     'foreign_table'       => 'fe_users',
@@ -190,8 +190,8 @@ switch($confArr['full_wizardSupport'])
     'exclude'   => $bool_exclude_default,
     'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_cat',
     'config'    => array (
-      'type'      => 'select', 
-      'size'      => 10, 
+      'type'      => 'select',
+      'size'      => 10,
       'minitems'  => 0,
       'maxitems'  => 999,
       'MM'                  => 'tx_org_workshop_mm_tx_org_workshop_cat',
@@ -239,7 +239,7 @@ switch($confArr['full_wizardSupport'])
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // 
+    //
     // Other wizards and config drafts
 
   $arr_wizard_url = array (
@@ -265,8 +265,8 @@ switch($confArr['full_wizardSupport'])
     'type'          => 'group',
     'internal_type' => 'file',
     'allowed'       => '',
-    'disallowed'    => 'php,php3', 
-    'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'], 
+    'disallowed'    => 'php,php3',
+    'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
     'uploadfolder'  => 'uploads/tx_org',
     'size'          => 10,
     'minitems'      => 0,
@@ -276,15 +276,15 @@ switch($confArr['full_wizardSupport'])
   $conf_file_image = array (
     'type'          => 'group',
     'internal_type' => 'file',
-    'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], 
-    'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'], 
+    'allowed'       => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+    'max_size'      => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
     'uploadfolder'  => 'uploads/tx_org',
     'show_thumbs'   => 1,
     'size'          => 3,
     'minitems'      => 0,
     'maxitems'      => 20,
   );
-  
+
   $conf_input_30_trim = array (
     'type' => 'input',
     'size' => '30',
@@ -296,7 +296,7 @@ switch($confArr['full_wizardSupport'])
     'size' => '30',
     'eval' => 'trim,required'
   );
-  
+
   $conf_input_80_trim = array (
     'type' => 'input',
     'size' => '80',
@@ -304,16 +304,16 @@ switch($confArr['full_wizardSupport'])
   );
   $conf_text_30_05 = array (
     'type' => 'text',
-    'cols' => '30', 
+    'cols' => '30',
     'rows' => '5',
   );
-  
+
   $conf_text_50_10 = array (
     'type' => 'text',
-    'cols' => '50', 
+    'cols' => '50',
     'rows' => '10',
   );
-  
+
   $conf_text_rte = array (
     'type' => 'text',
     'cols' => '30',
@@ -433,8 +433,8 @@ $TCA['tx_org_workshop'] = array (
       'exclude'   => $bool_exclude_default,
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.static_languages',
       'config'    => array (
-        'type'      => 'select', 
-        'size'      => 5, 
+        'type'      => 'select',
+        'size'      => 5,
         'minitems'  => 0,
         'maxitems'  => 99,
         'xx_items' => array(
@@ -450,8 +450,8 @@ $TCA['tx_org_workshop'] = array (
       'exclude'   => $bool_exclude_default,
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.static_countries',
       'config'    => array (
-        'type'      => 'select', 
-        'size'      => 1, 
+        'type'      => 'select',
+        'size'      => 1,
         'minitems'  => 0,
         'maxitems'  => 1,
         'items' => array(
@@ -466,8 +466,11 @@ $TCA['tx_org_workshop'] = array (
       'exclude'   => $bool_exclude_default,
       'label'     => 'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.static_country_zones',
       'config'    => array (
-        'type'          => 'select', 
-        'size'          => 1, 
+        'type'    => 'select',
+        'items'         => array(
+          '' => '',
+        ),
+        'size'          => 1,
         'minitems'      => 0,
         'maxitems'      => 1,
         'foreign_table' => 'static_country_zones',
@@ -476,7 +479,7 @@ $TCA['tx_org_workshop'] = array (
           // WORKFLOW: We get all needed items by itemsProcFunc
         'itemsProcFunc' => 'tx_browser_tca->static_country_zones',
         'itemsProcFunc_conf' => array(
-            // If your TCA field is not called 'static_countries', you have to configure 'countries_are_in' 
+            // If your TCA field is not called 'static_countries', you have to configure 'countries_are_in'
           //'countries_are_in' => 'static_countries',
         ),
       ),
@@ -615,14 +618,14 @@ $TCA['tx_org_workshop'] = array (
 );
   // Relation fe_users
 $TCA['tx_org_workshop']['columns']['fe_users']['config']['MM'] =
-  'tx_org_workshop_mm_fe_users'; 
+  'tx_org_workshop_mm_fe_users';
   // Relation fe_users
 
   // Relation tx_org_workshop_audience
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_audience';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['size'] =
-  5; 
+  5;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_audience';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_audience']['config']['foreign_table'] =
@@ -648,14 +651,14 @@ if($bool_wizards_wo_add_and_list_for_catTables)
 
   // Relation tx_org_workshop_cat
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_cat']['config']['size'] =
-  5; 
+  5;
   // Relation tx_org_workshop_cat
 
   // Relation tx_org_workshop_course
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_course';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['size'] =
-  5; 
+  5;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_course';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_course']['config']['foreign_table'] =
@@ -683,7 +686,7 @@ if($bool_wizards_wo_add_and_list_for_catTables)
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_degree';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['size'] =
-  5; 
+  5;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_degree';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_degree']['config']['foreign_table'] =
@@ -711,7 +714,7 @@ if($bool_wizards_wo_add_and_list_for_catTables)
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_focus';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['size'] =
-  5; 
+  5;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_focus';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_focus']['config']['foreign_table'] =
@@ -739,7 +742,7 @@ if($bool_wizards_wo_add_and_list_for_catTables)
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_riskcycle';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['size'] =
-  5; 
+  5;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_riskcycle';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_riskcycle']['config']['foreign_table'] =
@@ -793,13 +796,13 @@ if($bool_wizards_wo_add_and_list_for_catTables)
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_type';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['size'] =
-  1; 
+  1;
 //$TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['items'][] =
-//  array('', 0); 
+//  array('', 0);
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['minitems'] =
-  1; 
+  1;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['maxitems'] =
-  10; 
+  10;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_type';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['foreign_table'] =
@@ -855,13 +858,13 @@ $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['label'] =
 $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['eval'] =
   'required';
 $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['size'] =
-  1; 
+  1;
 //$TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['items'][] =
-//  array('', 0); 
+//  array('', 0);
 $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['maxitems'] =
-  10; 
+  10;
 $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['minitems'] =
-  1; 
+  1;
 $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_headquarters';
 $TCA['tx_org_workshop']['columns']['tx_org_headquarters']['config']['foreign_table'] =

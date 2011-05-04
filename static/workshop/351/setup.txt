@@ -127,6 +127,13 @@ plugin.tx_browser_pi1 {
             }
           }
         }
+        tx_org_headquarters {
+          title = TEXT
+          title {
+            wrap  = <p class="headquarter">|</p>
+            value = ###TX_ORG_HEADQUARTERS.TITLE###
+          }
+        }
         filter {
           static_country_zones {
             zn_name_local < plugin.tx_browser_pi1.displayList.master_templates.selectbox
@@ -418,6 +425,7 @@ plugin.tx_browser_pi1 {
               wrap          = <div class="logo">|</div>
             }
           }
+            // Rating will be removed below! It will be delivered by the hook row_single_consolidated
           rating = COA
           rating {
               // 1 at least
@@ -530,6 +538,13 @@ plugin.tx_browser_pi1 {
             60.noTrimWrap = | (|)|
           }
           rating >
+        }
+        tx_org_headquarters {
+          title = TEXT
+          title {
+            wrap  = <p class="headquarter">|</p>
+            value = ###TX_ORG_HEADQUARTERS.TITLE###
+          }
         }
         tx_org_location {
           title2 = COA
