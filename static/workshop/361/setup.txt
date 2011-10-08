@@ -41,10 +41,10 @@ plugin.tx_browser_pi1 {
         marker {
           my_listview_title {
             wrap = <h3><span>|</span></h3>
-            value = Playing schedule
-            lang.de = Spielplan
+            value = Workshops
+            lang.de = Workshops
             typolink {
-              parameter = {$base_hfsBerlin.url.bat}
+              parameter = {$plugin.org.pages.workshops}
               title {
                 value = All Events
                 lang.de = Alle Veranstaltungen
@@ -57,7 +57,7 @@ plugin.tx_browser_pi1 {
             lang.de = Alle Veranstaltungen &raquo;
             wrap = <p>|</p>
             typolink {
-              parameter = {$base_hfsBerlin.url.bat}
+              parameter = {$plugin.org.pages.workshops}
               title {
                 value = All items
                 lang.de = Alle Veranstaltungen
@@ -95,7 +95,7 @@ plugin.tx_browser_pi1 {
               if.isTrue = ###TX_ORG_CAL.SHORTCUT###
               value     = ###TX_ORG_CAL.SHORTCUT###
               wrap      (
-                <a href="{$base_hfsBerlin.url.bat}?tx_browser_pi1[workshopUid]=###TX_ORG_CAL.UID###&###CHASH###">|</a>
+                <a href="{$plugin.org.pages.workshops}?tx_browser_pi1[workshopUid]=###TX_ORG_CAL.UID###&###CHASH###">|</a>
               )
             }
             20 = TEXT
@@ -103,7 +103,7 @@ plugin.tx_browser_pi1 {
               if.isFalse = ###TX_ORG_CAL.SHORTCUT###
               value     = ###TX_ORG_CAL.TITLE###
               wrap      (
-                <a href="{$base_hfsBerlin.url.bat}?tx_browser_pi1[workshopUid]=###TX_ORG_CAL.UID###&###CHASH###">|</a>
+                <a href="{$plugin.org.pages.workshops}?tx_browser_pi1[workshopUid]=###TX_ORG_CAL.UID###&###CHASH###">|</a>
               )
             }
           }

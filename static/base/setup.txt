@@ -78,3 +78,60 @@ page.config.headerComment (
         TYPO3-Programmierung: die-netzmacher.de
 )
   // Header Comment
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////
+  //
+  // plugin.tx_browser
+plugin.tx_browser_pi1.views {
+	list.201 {
+		select := appendString(, tx_org_workshop.title, tx_org_workshop.image)
+		tx_org_cal.title.10 {
+              tx_org_workshop < .tx_org_event
+              tx_org_workshop {
+                value = ###TX_ORG_WORKSHOP.TITLE###
+              }
+		}
+	}
+	single.201 {
+		select := appendString(, tx_org_workshop.title, tx_org_workshop.text, tx_org_workshop.image, tx_org_workshop.imageseo, tx_org_workshop.imagecaption)
+		tx_org_cal{
+			bodytext {
+/*
+			  tx_org_workshop < .default
+			  tx_org_workshop {
+			    imgList                   = ###TX_ORG_WORKSHOP.IMAGE###
+			    1 {
+			      file {
+			        width                 >
+			        height                >
+			      }
+			      altText                 = ###TX_ORG_WORKSHOP.IMAGESEO###
+			      titleText               = ###TX_ORG_WORKSHOP.IMAGESEO###
+			      imageLinkWrap           >
+			    }
+			    textPos                   >
+			    image_compression         >
+			    image_effects             >
+			    noRows                    >
+			    cols                      >
+			    border                    >
+			    caption.1.value           = ###TX_ORG_WORKSHOP.IMAGECAPTION###
+			    captionAlign              >
+			    layout                    >
+			    text {
+			      wrap      = <div class="cal_bodytext cal_bodytext_workshop">|</div>
+			      20 {
+			        if.isTrue   = ###TX_ORG_WORKSHOP.TEXT###
+			        value       = ###TX_ORG_WORKSHOP.TEXT###
+			      }
+			    }
+			  }
+*/
+			}
+tx_org_workshop = TEXT
+tx_org_workshop.value = buuu
+		}
+	}
+}

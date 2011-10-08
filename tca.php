@@ -94,6 +94,7 @@ switch($confArr['store_records'])
     $bool_wizards_wo_add_and_list = true;
     break;
   case('Clear presented: each record group in one directory at most'):
+    $str_marker_pid               = '###PAGE_TSCONFIG_ID###';
     $str_store_record_conf        = 'pid = ###PAGE_TSCONFIG_ID###';
     $bool_wizards_wo_add_and_list = true;
     break;
@@ -797,12 +798,12 @@ $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['label'] =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.tx_org_workshop_type';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['size'] =
   1;
-//$TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['items'][] =
-//  array('', 0);
+$TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['items'][] =
+  array('', 0);
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['minitems'] =
   1;
-$TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['maxitems'] =
-  10;
+//$TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['maxitems'] =
+//  1;
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['MM'] =
   'tx_org_workshop_mm_tx_org_workshop_type';
 $TCA['tx_org_workshop']['columns']['tx_org_workshop_type']['config']['foreign_table'] =

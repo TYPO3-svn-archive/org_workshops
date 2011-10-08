@@ -1,5 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) 
+if (!defined ('TYPO3_MODE'))
 {
   die ('Access denied.');
 }
@@ -7,9 +7,9 @@ if (!defined ('TYPO3_MODE'))
 
 
   ////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // INDEX
-  
+
   // Configuration by the extension manager
   //    Localization support
   //    Store record configuration
@@ -34,9 +34,9 @@ if (!defined ('TYPO3_MODE'))
 
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // Configuration by the extension manager
-  
+
 $confArr  = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
 
   // Language for labels of static templates and page tsConfig
@@ -80,7 +80,7 @@ if (strtolower(substr($confArr['TCA_simplify_time_control'], 0, strlen('no'))) =
 $bool_wizards_wo_add_and_list       = false;
 $bool_full_wizardSupport_allTables  = true;
 $str_marker_pid                     = '###CURRENT_PID###';
-switch($confArr['store_records']) 
+switch($confArr['store_records'])
 {
   case('Multi grouped: record groups in different directories'):
     //var_dump('MULTI');
@@ -107,7 +107,7 @@ switch($confArr['store_records'])
 
 
   ////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // Enables the Include Static Templates
 
   // Case $llStatic
@@ -130,19 +130,19 @@ switch(true) {
 
 
   ////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // Add pagetree icons
 
   // Case $llStatic
 switch(true) {
   case($llStatic == 'de'):
       // German
-    $TCA['pages']['columns']['module']['config']['items'][] = 
+    $TCA['pages']['columns']['module']['config']['items'][] =
        array('Org: Workshop', 'org_wrkshp', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
     break;
   default:
       // English
-    $TCA['pages']['columns']['module']['config']['items'][] = 
+    $TCA['pages']['columns']['module']['config']['items'][] =
        array('Org: Workshop', 'org_wrkshp', t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon/workshop.gif');
 }
   // Case $llStatic
@@ -163,9 +163,9 @@ t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKE
 
 
   ////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // Configure third party tables
-  
+
   // draft field tx_org_workshop
   // fe_users
   // tx_org_cal
@@ -176,7 +176,7 @@ $arr_tx_org_workshop = array (
   'exclude' => 0,
   'label'   => 'LLL:EXT:org_workshops/locallang_db.xml:tca_phrase.workshop',
   'config'  => array (
-    'type'     => 'select', 
+    'type'     => 'select',
     'size'     =>   30,
     'minitems' =>    0,
     'maxitems' =>    1,
@@ -264,12 +264,12 @@ foreach($arr_showitem as $key => $value)
 $str_showitem                 = implode('--div--;', $arr_new_showitem);
 $TCA['fe_users']['types']['0']['showitem']   = $str_showitem;
   // Insert div [workshop] at position $int_div_position
-  
+
 if($bool_wizards_wo_add_and_list)
 {
   unset($TCA['fe_users']['columns']['tx_org_workshop']['config']['wizards']['add']);
   unset($TCA['fe_users']['columns']['tx_org_workshop']['config']['wizards']['list']);
-}  
+}
   // fe_users
 
   // tx_org_cal
@@ -304,10 +304,16 @@ $TCA['tx_org_cal']['columns']['type']['config']['items']['tx_org_workshop'] = ar
 
   // Insert type [repertoire] with fields to TCAtypes
 $TCA['tx_org_cal']['types']['tx_org_workshop']['showitem'] =
-  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_calendar,    type,title,datetime,tx_org_caltype,tx_org_workshop,'.
-  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_event,       tx_org_location,tx_org_calentrance,'.
-  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_department,  tx_org_department,'.
-  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_control,     hidden;;1;;,fe_group'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_calendar,
+    type,title,
+    --palette--;LLL:EXT:org/locallang_db.xml:palette.datetime_datetimeend;datetime_datetimeend,
+    tx_org_caltype,tx_org_workshop,'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_event,
+    tx_org_location,tx_org_calentrance,'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_department,
+    tx_org_department,'.
+  '--div--;LLL:EXT:org/locallang_db.xml:tx_org_cal.div_control,
+    hidden;;1;;,fe_group'.
   ''
 ;
   // tx_org_cal
@@ -324,7 +330,7 @@ $TCA['tx_org_headquarters']['interface']['showRecordFieldList'] = $showRecordFie
 
   // Add fields to TCAcolumns: premium, workshop
 t3lib_extMgm::addTCAcolumns(
-  'tx_org_headquarters', 
+  'tx_org_headquarters',
   array
   (
     'tx_org_workshop_premium' => array
@@ -341,7 +347,7 @@ t3lib_extMgm::addTCAcolumns(
 );
 $TCA['tx_org_headquarters']['columns']['tx_org_workshop']['label']                        =
   'LLL:EXT:org_workshops/locallang_db.xml:tx_org_headquarters.tx_org_workshop';
-$TCA['tx_org_headquarters']['columns']['tx_org_workshop']['config']['MM']                 = 
+$TCA['tx_org_headquarters']['columns']['tx_org_workshop']['config']['MM']                 =
   'tx_org_workshop_mm_tx_org_headquarters';
 $TCA['tx_org_headquarters']['columns']['tx_org_workshop']['config']['MM_opposite_field']  =
   'tx_org_headquarters';
@@ -384,7 +390,7 @@ $TCA['tx_org_headquarters']['types']['0']['showitem']   = $str_showitem;
 
 
   ////////////////////////////////////////////////////////////////////////////
-  // 
+  //
   // TCA tables
 
   // org_workshop

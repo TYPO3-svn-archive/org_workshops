@@ -22,7 +22,7 @@ plugin.tx_browser_pi1 {
     extensions {
       org {
         workshops {
-          name      = Org: Workshops
+          name      = +Org: Workshops
           file      = EXT:org_workshops/res/html/workshop/351/default.tmpl
           csvViews  = 351
         }
@@ -32,9 +32,9 @@ plugin.tx_browser_pi1 {
 
   views {
     list {
-      351 = Workshops
+      351 = +Org: Workshops
       351 {
-        name    = Workshops
+        name    = +Org: Workshops
         showUid = workshopUid
         displayList < plugin.tx_browser_pi1.displayList
         displayList {
@@ -42,6 +42,10 @@ plugin.tx_browser_pi1 {
         }
         marker < plugin.tx_browser_pi1.marker
         marker {
+          my_uid_extern = TEXT
+          my_uid_extern {
+            data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop.uid_extern
+          }
           my_cat = TEXT
           my_cat {
             data = LLL:EXT:org_workshops/locallang_db.xml:tx_org_workshop_cat.title
@@ -79,13 +83,15 @@ plugin.tx_browser_pi1 {
               parameter = {$plugin.org.pages.calendar}
               title {
                 value = All Events
-                lang.de = Alle Veranstaltungen der HfS
+               lang.de = Alle Veranstaltungen
               }
             }
           }
         }
         select (
           tx_org_workshop.title,
+          tx_org_workshop.uid_extern,
+          tx_org_workshop.short,
           tx_org_workshop.text,
           tx_org_workshop.rating,
           tx_org_headquarters.title,
@@ -120,11 +126,27 @@ plugin.tx_browser_pi1 {
             }
             wrap = <h2>|</h2>
           }
-          text = TEXT
-          text {
-            stdWrap {
-              crop = 60 | ... | 1
+          short = COA
+          short {
+            10 = TEXT
+            10 {
+              value = ###TX_ORG_WORKSHOP.SHORT###
+              stdWrap {
+                crop      = 60 | ... | 1
+                stripHtml = 1
+              }
+              if.isTrue  = ###TX_ORG_WORKSHOP.SHORT###
             }
+            20 = TEXT
+            20 {
+              value = ###TX_ORG_WORKSHOP.TEXT###
+              stdWrap {
+                crop      = 60 | ... | 1
+                stripHtml = 1
+              }
+              if.isFalse  = ###TX_ORG_WORKSHOP.SHORT###
+            }
+            wrap  = <p class="tx_org_workshop_short">|</p>
           }
         }
         tx_org_headquarters {
@@ -134,6 +156,7 @@ plugin.tx_browser_pi1 {
             value = ###TX_ORG_HEADQUARTERS.TITLE###
           }
         }
+
         filter {
           static_country_zones {
             zn_name_local < plugin.tx_browser_pi1.displayList.master_templates.selectbox
@@ -301,8 +324,12 @@ plugin.tx_browser_pi1 {
         }
         select (
           tx_org_workshop.title,
+          tx_org_workshop.uid_extern,
           tx_org_workshop.text,
+          tx_org_workshop.location,
           tx_org_workshop.rating,
+          tx_org_workshop.requirements,
+          tx_org_workshop.subject,
           tx_org_workshop.length,
           tx_org_workshop.value,
           tx_org_workshop.tx_org_tax,
@@ -348,6 +375,32 @@ plugin.tx_browser_pi1 {
           text = TEXT
           text {
             stdWrap.parseFunc < lib.parseFunc_RTE
+          }
+          requirements = COA
+          requirements {
+            10 = TEXT
+            10 {
+              value   = Requirements
+              lang.de = Voraussetzungen
+              wrap    =  <h3>|</h3>
+            }
+            20 = TEXT
+            20 {
+              value = ###TX_ORG_WORKSHOP.REQUIREMENTS###
+              stdWrap.parseFunc < lib.parseFunc_RTE
+            }
+            wrap = <div class="tx_org_workshop_requirements">|</div>
+          }
+          subject < .requirements
+          subject {
+            10 {
+              value   = Subject
+              lang.de = Thema
+            }
+            20 {
+              value = ###TX_ORG_WORKSHOP.SUBJECT###
+            }
+            wrap = <div class="tx_org_workshop_subject">|</div>
           }
           image < tt_content.image.20
           image {
@@ -425,119 +478,6 @@ plugin.tx_browser_pi1 {
               wrap          = <div class="logo">|</div>
             }
           }
-            // Rating will be removed below! It will be delivered by the hook row_single_consolidated
-          rating = COA
-          rating {
-              // 1 at least
-            10 = COA
-            10 {
-              comment (
-                if   tx_org_workshop.rating   >         0.9
-                if          {$value}          >   {$isLessThan}
-              )
-              10 = IMAGE
-              10 {
-                if {
-                  value         = ###TX_ORG_WORKSHOP.RATING###
-                  isLessThan    = 0.9
-                }
-                file = EXT:org_keq/res/icons/ratingstarFull.png
-                file {
-                  height  = 20
-                  width   = 20
-                }
-                imageLinkWrap = 1
-                imageLinkWrap {
-                  enable = 1
-                  typolink {
-                    parameter = {$plugin.org.pages.shopping_cart}
-                    parameter = http://die-netzmacher.de
-                  }
-                }
-              }
-                // Less than 1
-              20 < .10
-              20 {
-                comment >
-                comment (
-                  if   tx_org_workshop.rating   <          1
-                  if          {$value}          <   {$isGreaterThan}
-                )
-                if {
-                  isGreaterThan = 0.5
-                }
-                file = EXT:org_keq/res/icons/ratingstarEmpty.png
-              }
-//              30 = TEXT
-//              30.value = 1
-            }
-              // 1.5 at least but not 2
-            15 < .10
-            15 {
-              10.if.isLessThan    = 1.4
-              10.if.isGreaterThan = 2
-              10.file = EXT:org_keq/res/icons/ratingstarHalf.png
-              20 >
-//              30.value = 1.5
-            }
-              // 2 at least
-            20 < .10
-            20 {
-              10.if.isLessThan    = 1.9
-              20.if.isGreaterThan = 1.5
-              20.if.isLessThan    >
-//              30.value = 2
-            }
-              // 2.5 at least but not 3
-            25 < .15
-            25 {
-              10.if.isLessThan    = 2.4
-              10.if.isGreaterThan = 3
-//              30.value = 2.5
-            }
-              // 3 at least
-            30 < .10
-            30 {
-              10.if.isLessThan    = 2.9
-              20.if.isGreaterThan = 2.5
-              20.if.isLessThan    >
-//              30.value = 3
-            }
-              // 3.5 at least but not 4
-            35 < .15
-            35 {
-              10.if.isLessThan    = 3.4
-              10.if.isGreaterThan = 4
-//              30.value = 3.5
-            }
-              // 4 at least
-            40 < .10
-            40 {
-              10.if.isLessThan    = 3.9
-              20.if.isGreaterThan = 3.5
-              20.if.isLessThan    >
-//              30.value = 4
-            }
-              // 4.5 at least but not 5
-            45 < .15
-            45 {
-              10.if.isLessThan    = 4.4
-              10.if.isGreaterThan = 5
-//              30.value = 4.5
-            }
-              // 5 at least
-            50 < .10
-            50 {
-              10.if.isLessThan    = 4.9
-              20.if.isGreaterThan = 4.5
-              20.if.isLessThan    >
-//              30.value = 5
-            }
-            60 = TEXT
-            60.value = ###TX_ORG_WORKSHOP.RATING###
-            60.noTrimWrap = | (|)|
-          }
-          rating >
         }
         tx_org_headquarters {
           title = TEXT
@@ -571,17 +511,17 @@ plugin.tx_browser_pi1 {
       list_mode_351_titleTag    = Organiser: seminars and workshops
       list_mode_351_keywords    = TYPO3, organiser, seminars, workshops
       list_mode_351_summary     = TYPO3 Organiser: seminars and workshops
-      single_mode_351_titleTag  = Organiser Workshop: ###TX_ORG_CAL.TITLE###
-      single_mode_351_keywords  = ###TX_ORG_CAL.KEYWORDS###
-      single_mode_351_summary   = ###TX_ORG_CAL.DESCRIPTION###
+      single_mode_351_titleTag  = Organiser Workshop: ###TX_ORG_WORKSHOP.TITLE###
+      single_mode_351_keywords  = ###TX_ORG_WORKSHOP.KEYWORDS###
+      single_mode_351_summary   = ###TX_ORG_WORKSHOP.DESCRIPTION###
     }
     de {
       list_mode_351_titleTag    = Organiser: Seminare und Workshops
       list_mode_351_keywords    = TYPO3, Organiser, Seminare, Workshops
       list_mode_351_summary     = TYPO3 Organiser: Seminare und Workshops
       single_mode_351_titleTag  = Organiser Workshop: ###TX_ORG_CAL.TITLE###
-      single_mode_351_keywords  = ###TX_ORG_CAL.KEYWORDS###
-      single_mode_351_summary   = ###TX_ORG_CAL.DESCRIPTION###
+      single_mode_351_keywords  = ###TX_ORG_WORKSHOP.KEYWORDS###
+      single_mode_351_summary   = ###TX_ORG_WORKSHOP.DESCRIPTION###
     }
   }
 }

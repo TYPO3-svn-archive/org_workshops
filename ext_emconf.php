@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Extend the Organiser with seminars and workshops!',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '0.4.3',
+	'version' => '0.4.4',
 	'dependencies' => 'org,static_info_tables',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,7 +34,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
-			'org' => '0.3.1-',
+			'org' => '2.0.4-',
 			'static_info_tables' => '',
 		),
 		'conflicts' => array(

@@ -13,7 +13,7 @@
         <br />
         <ol>
           <li>
-            Linking from a workshop record to a record of another Organiser table is possible only, if the records are store in the same directory.
+            Linking from a workshop record to a record of another Organiser table is possible only, if the records are stored in the same directory.
           </li>
           <li>
             "Store record configuration" has set to [EASY]. Please check below.
